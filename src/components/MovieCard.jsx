@@ -3,11 +3,12 @@ import React from 'react';
 
 function MovieCard({movieData}){
     return(
-        <div>
-            <h2>
-                {movieData.title}
-            </h2>
-            <img src={movieData.poster} />
+        <div className='movie-card'>
+            <div className="card-img" style={{ '--image-url': `url(${movieData.poster ? movieData.poster : 'none'})` }}></div>
+            <div className='card-footer'>
+                <h2>{movieData.title}</h2>
+                {/* <h2>{movieData.year}</h2> */}
+            </div>
         </div>
     )
 }

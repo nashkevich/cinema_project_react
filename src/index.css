@@ -1,0 +1,71 @@
+.film-list-wrapper{
+    display: grid;
+    grid-template-columns: repeat(5,1fr);
+    gap: 10px;
+}
+.movie-card{
+    width: 200px;
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+    h2{
+        max-width: 300px;
+        font-size: 18px;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+
+    }
+}
+.wrapper{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card-img{
+    width: 100%;
+    height: 100%;
+    background-image: var(--image-url);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.card-footer{
+    display: flex;
+    justify-content: space-between;
+}
+@media (max-width: 1400px){
+    .film-list-wrapper{
+        grid-template-columns: repeat(3,1fr);
+    }
+}
+@media (max-width: 760px){
+    .film-list-wrapper{
+        grid-template-columns: repeat(2,1fr);
+    }
+}
+@media (max-width: 430px){
+    .film-list-wrapper{
+        grid-template-columns: repeat(1,1fr);
+    }
+}
+
+.pagination{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    svg{
+        cursor: pointer;
+        width: 30px;
+        height: 30px;
+        fill: black;
+    }
+    h3{
+        margin: 0;
+    }
+}

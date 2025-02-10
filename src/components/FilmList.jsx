@@ -1,32 +1,51 @@
 import { useEffect, useState } from "react"
 import api from "../api"
 import MovieCard from "./MovieCard"
-function FilmList(){
+function FilmList({page,limit,searchQuery,setNumOfPages}){
     const [filmList,setFilmList] = useState([])
-    const [page,setPage] = useState(1)
-    const [limit,setLimit] = useState(10)
+    const [filterList,setFilterList] = useState([])
     const getMoviePage =async()=>{
         const result = await api.get(`movie?page=${page}&limit=${limit}`)
         setFilmList(result.data.response)
     }
-    function changePage(isNext){
-        setPage((prevPage)=>{
-            if(isNext){
-                return prevPage + 1
-            }else if(!isNext && prevPage != 1){
-                return prevPage - 1
-            }
-        })
+    
+    function cutFilterList(filterList){
+        const from = ((page-1)* limit)
+        const to = page * limit
+        
+        const paginationFilms = filterList.slice(from,to)
+        return paginationFilms
     }
+    const getFilterFilms =async ()=> {
+        const result = await api.get(`movie?searchQuery=${searchQuery}`)
+        if(result){
+            setFilterList(result.data.response)
+            const newNumberOfPages = Math.round(result.data.response.length/limit)
+            setNumOfPages(newNumberOfPages)
+            const newFilms  = cutFilterList(result.data.response)
+            setFilmList(newFilms)
+        }
+       }
     useEffect(()=>{
-        getMoviePage()
+        if(filterList.length != 0){
+            const newFilms  = cutFilterList(result.data.response)
+            setFilmList(newFilms)
+        }else{
+            getMoviePage()
+        }
     },[page])
+    useEffect(()=>{
+        
+        if(searchQuery != ''){
+            getFilterFilms()
+        }else{
+            getMoviePage()
+        }
+    },[searchQuery])
     return(
-        <div>
-            <span onClick={()=>{changePage(true)}}>+</span>
-            <span onClick={()=>{changePage(false)}}>-</span>
+        <div className="film-list-wrapper">
             {filmList.map((film,index)=>{
-                return <MovieCard key={index}  movieData={film}/>
+                return <div className="wrapper"><MovieCard key={index}  movieData={film}/></div>
             })}
         </div>
     )
