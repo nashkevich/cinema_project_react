@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react"
 import api from "../api"
 import MovieCard from "./MovieCard"
-function FilmList({page,limit,searchQuery,setNumOfPages}){
+function FilmList({page,limit,searchQuery,searchGenres,setNumOfPages}){
     const [filmList,setFilmList] = useState([])
     const [filterList,setFilterList] = useState([])
     const getMoviePage =async()=>{
         const result = await api.get(`movie?page=${page}&limit=${limit}`)
+        console.log(result.data.response)
         setFilmList(result.data.response)
     }
     
@@ -17,10 +18,11 @@ function FilmList({page,limit,searchQuery,setNumOfPages}){
         return paginationFilms
     }
     const getFilterFilms =async ()=> {
-        const result = await api.get(`movie?searchQuery=${searchQuery}`)
+        const result = await api.get(`movie?searchQuery=${searchQuery}&searchGenres=${searchGenres}`)
         if(result){
             setFilterList(result.data.response)
             const newNumberOfPages = Math.round(result.data.response.length/limit)
+            console.log(result)
             setNumOfPages(newNumberOfPages)
             const newFilms  = cutFilterList(result.data.response)
             setFilmList(newFilms)
@@ -36,12 +38,12 @@ function FilmList({page,limit,searchQuery,setNumOfPages}){
     },[page])
     useEffect(()=>{
         
-        if(searchQuery != ''){
+        if(searchQuery != '' || searchGenres != ''){
             getFilterFilms()
         }else{
             getMoviePage()
         }
-    },[searchQuery])
+    },[searchQuery,searchGenres])
     return(
         <div className="film-list-wrapper">
             {filmList.map((film,index)=>{

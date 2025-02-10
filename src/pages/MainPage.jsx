@@ -7,6 +7,10 @@ function MainPage(){
     const [limit,setLimit] = useState(10)
     const [numOfPages,setNumOfPages] = useState(0)
     const [searchQuery,setSearchQuery] = useState("")
+    const [searchGenres,setSearchGenres] = useState("")
+    useEffect(()=>{
+        console.log(searchGenres)
+    },[searchGenres])
     const createPagination = async ()=>{
         const result = await api.get('movie?isCount=true')
         const num = Math.round(result.data.response / limit)
@@ -28,8 +32,8 @@ function MainPage(){
     },[])
     return(
         <div>
-            <NavBarFilms setSearchQuery={setSearchQuery}></NavBarFilms>
-            <FilmList page={page} limit={limit} searchQuery={searchQuery} setNumOfPages={setNumOfPages}></FilmList>
+            <NavBarFilms setSearchQuery={setSearchQuery} setSearchGenres={setSearchGenres}></NavBarFilms>
+            <FilmList page={page} limit={limit} searchQuery={searchQuery} searchGenres={searchGenres} setNumOfPages={setNumOfPages}></FilmList>
             <div className="pagination">
                 <span onClick={()=>{changePage(false)}}><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"  fill="#e8eaed"><path d="M400-80 0-480l400-400 71 71-329 329 329 329-71 71Z"/></svg></span>
                 <h3>{page} of {numOfPages == 0 ? '1' : numOfPages}</h3>
