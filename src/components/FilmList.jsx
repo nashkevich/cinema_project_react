@@ -6,7 +6,6 @@ function FilmList({page,limit,searchQuery,searchGenres,setNumOfPages}){
     const [filterList,setFilterList] = useState([])
     const getMoviePage =async()=>{
         const result = await api.get(`movie?page=${page}&limit=${limit}`)
-        console.log(result.data.response)
         setFilmList(result.data.response)
     }
     
@@ -30,14 +29,13 @@ function FilmList({page,limit,searchQuery,searchGenres,setNumOfPages}){
        }
     useEffect(()=>{
         if(filterList.length != 0){
-            const newFilms  = cutFilterList(result.data.response)
+            const newFilms  = cutFilterList(filterList)
             setFilmList(newFilms)
         }else{
             getMoviePage()
         }
     },[page])
     useEffect(()=>{
-        
         if(searchQuery != '' || searchGenres != ''){
             getFilterFilms()
         }else{

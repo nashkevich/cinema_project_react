@@ -3,6 +3,7 @@ function NavBarFilms({setSearchQuery,setSearchGenres}){
         <div>
             <input type="text" name='filmName' onChange={(e)=>setSearchQuery(e.target.value)}/>
             <select onChange={(e)=>{setSearchGenres(e.target.value)}} name="genre" id="genre">
+                <option value="">All</option>
                 <option value="Horror">Horror</option>
                 <option value="Drama">Drama</option>
                 <option value="Crime">Crime</option>
