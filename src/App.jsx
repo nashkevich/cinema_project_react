@@ -5,7 +5,9 @@ import './App.css'
 import LoginForm from './components/LoginForm'
 import RegistrationForm from './components/RegistrationForm'
 import MainPage from './pages/MainPage'
+import MoviePage from './pages/MoviePage'
 import PrivateRoute from './components/PrivateRoute'
+import UserPage from './pages/UserPage'
 import {Route,Routes} from 'react-router'
 function App() {
   const [count, setCount] = useState(0)
@@ -18,6 +20,8 @@ function App() {
       </Route>
       <Route path='cinema' element={<PrivateRoute />}>
         <Route path='main' element={<MainPage>  </MainPage>} />
+        <Route path='movie/:movieId' element={<MoviePage/>}/>
+        <Route path="liked" element={<UserPage/>}/>
       </Route>
     </Routes>
      

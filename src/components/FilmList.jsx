@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import api from "../api"
 import MovieCard from "./MovieCard"
-function FilmList({page,limit,searchQuery,searchGenres,setNumOfPages}){
+function FilmList({page,limit,searchQuery,searchGenres,setNumOfPages,basket,setBasket}){
     const [filmList,setFilmList] = useState([])
     const [filterList,setFilterList] = useState([])
     const getMoviePage =async()=>{
@@ -45,7 +45,7 @@ function FilmList({page,limit,searchQuery,searchGenres,setNumOfPages}){
     return(
         <div className="film-list-wrapper">
             {filmList.map((film,index)=>{
-                return <div className="wrapper"><MovieCard key={index}  movieData={film}/></div>
+                return <div className="wrapper"><MovieCard key={index}  movieData={film} basket={basket} setBasket={setBasket}/></div>
             })}
         </div>
     )

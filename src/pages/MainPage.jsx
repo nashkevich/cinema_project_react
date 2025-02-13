@@ -3,14 +3,12 @@ import FilmList from "../components/FilmList"
 import api from "../api"
 import NavBarFilms from "../components/NavBarFilms"
 function MainPage(){
+    const [basket,setBasket] = useState([])
     const [page,setPage] = useState(1)
     const [limit,setLimit] = useState(10)
     const [numOfPages,setNumOfPages] = useState(0)
     const [searchQuery,setSearchQuery] = useState("")
     const [searchGenres,setSearchGenres] = useState("")
-    useEffect(()=>{
-        console.log(searchGenres)
-    },[searchGenres])
     const createPagination = async ()=>{
         const result = await api.get('movie?isCount=true')
         const num = Math.round(result.data.response / limit)
@@ -29,11 +27,17 @@ function MainPage(){
     }
     useEffect(()=>{
         createPagination()
+        const getBasket = async ()=>{
+            const result = await api.get('user/basket')
+            const basket = result.data.response.basket
+            setBasket(basket)
+        }
+        getBasket()
     },[])
     return(
         <div>
             <NavBarFilms setSearchQuery={setSearchQuery} setSearchGenres={setSearchGenres}></NavBarFilms>
-            <FilmList page={page} limit={limit} searchQuery={searchQuery} searchGenres={searchGenres} setNumOfPages={setNumOfPages}></FilmList>
+            <FilmList page={page} limit={limit} searchQuery={searchQuery} searchGenres={searchGenres} setNumOfPages={setNumOfPages} basket={basket} setBasket={setBasket}></FilmList>
             <div className="pagination">
                 <span onClick={()=>{changePage(false)}}><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"  fill="#e8eaed"><path d="M400-80 0-480l400-400 71 71-329 329 329 329-71 71Z"/></svg></span>
                 <h3>{page} of {numOfPages == 0 ? '1' : numOfPages}</h3>
