@@ -1,3 +1,76 @@
+:root{
+    --main-btn-color:#E00040;
+    --main-bg-color:#040D18;
+    --input-bg-color:#223A51;
+}
+body{
+    background-color: var(--main-bg-color);
+}
+.main-btn{
+    cursor: pointer;
+    border: 1px solid var(--main-btn-color);
+    border-radius: 30px;
+    color: white;
+    font-size: 16px;
+    padding: 10px 25px;
+    background-color: var(--main-btn-color);
+}
+.nav-btn{
+    cursor: pointer;
+    color: white;
+    background-color: var(--main-bg-color);
+    border:none;
+    font-size: 16px;
+}
+.navbar{
+    color: white;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+.navbar-top{
+    display:flex;
+    justify-content: space-between;
+    width: 100%;
+}
+.content-nav{
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    h2{
+        margin: 0;
+    }
+}
+.search-section{
+    position: relative;
+    box-sizing: border-box;
+    display: flex;
+    margin: 10px;
+    input,select{
+        height: 40px;
+        padding: 10px;
+        width: 100%;
+        box-sizing: border-box;
+        background-color: var(--input-bg-color);
+        color: white;
+        border: 1px solid black;
+        outline: none;
+    }
+    select{
+        border-radius: 10px 0 0 10px;
+        max-width: 200px;
+    }
+    input{
+        border-radius: 0 10px 10px 0;
+    }
+    input::placeholder{
+        color: white;
+        text-decoration: underline;
+    }
+    input:focus::placeholder{
+        color:transparent;
+    }
+}
 .film-list-wrapper{
     display: grid;
     grid-template-columns: repeat(5,1fr);

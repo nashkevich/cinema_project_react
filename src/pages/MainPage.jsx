@@ -5,7 +5,7 @@ import NavBarFilms from "../components/NavBarFilms"
 function MainPage(){
     const [basket,setBasket] = useState([])
     const [page,setPage] = useState(1)
-    const [limit,setLimit] = useState(10)
+    const [limit,setLimit] = useState(18)
     const [numOfPages,setNumOfPages] = useState(0)
     const [searchQuery,setSearchQuery] = useState("")
     const [searchGenres,setSearchGenres] = useState("")
