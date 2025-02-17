@@ -27,7 +27,7 @@ function NavBarFilms({setSearchQuery,setSearchGenres}){
                 <div className="content-nav">
                     <button className="nav-btn">About</button>
                     <button className="nav-btn">Help</button>
-                    {isLogin ? (<div className="user-info-container"><button onClick={()=>{setIsOpen((prev)=>{return !prev})}} className="user-btn">U</button>{isOpen && <UserBar></UserBar>}</div>): (<div>
+                    {isLogin ? (<div className="user-info-container"><button onClick={()=>{setIsOpen((prev)=>{return !prev})}} className="user-btn">User</button>{isOpen && <UserBar></UserBar>}</div>): (<div>
                         <button onClick={()=>{navigate('/auth/login')}} className="nav-btn">Log In</button>
                         <button onClick={()=>{navigate('/auth/registration')}} className="main-btn">Sign Up</button>
                     </div>)}
