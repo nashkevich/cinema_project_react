@@ -5,7 +5,7 @@ import NavBarFilms from "../components/NavBarFilms"
 function MainPage(){
     const [basket,setBasket] = useState([])
     const [page,setPage] = useState(1)
-    const [limit,setLimit] = useState(18)
+    const [limit,setLimit] = useState(20)
     const [numOfPages,setNumOfPages] = useState(0)
     const [searchQuery,setSearchQuery] = useState("")
     const [searchGenres,setSearchGenres] = useState("")
@@ -14,6 +14,31 @@ function MainPage(){
         const num = Math.round(result.data.response / limit)
         setNumOfPages(num)
     }
+    function getItemsNumLastRow(){
+        const grid = document.querySelector('.film-list-wrapper')
+        const children = Array.from(grid.children)
+        const computedStyle = window.getComputedStyle(grid)
+
+        const columns = computedStyle.getPropertyValue('grid-template-columns').split(' ').length
+        const lastRowIndex = Math.floor(children.length/columns) * columns
+        const lastRowItems = children.slice(lastRowIndex);
+        return lastRowItems.length
+    }
+    useEffect(()=>{
+        setTimeout(()=>{
+            if(document.body.scrollHeight > window.innerHeight){
+                console.log("Scroll")
+                const deleteNum = getItemsNumLastRow()
+                console.log(deleteNum)
+            setLimit((prev)=>{
+                return prev - deleteNum
+            })
+            }else{
+                console.log("No scroll")
+            }
+        },200)
+        
+    },[limit])
     function changePage(isNext){
         setPage((prevPage)=>{
             if(isNext && page != numOfPages){
@@ -26,23 +51,25 @@ function MainPage(){
         })
     }
     useEffect(()=>{
-        createPagination()
         const getBasket = async ()=>{
             const result = await api.get('user/basket')
             const basket = result.data.response.basket
             setBasket(basket)
         }
+        createPagination()
         getBasket()
     },[])
     return(
-        <div>
+        <div className="main-container">
             <NavBarFilms setSearchQuery={setSearchQuery} setSearchGenres={setSearchGenres}></NavBarFilms>
             <div className="pagination">
                 <span onClick={()=>{changePage(false)}}><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"  fill="#e8eaed"><path d="M400-80 0-480l400-400 71 71-329 329 329 329-71 71Z"/></svg></span>
                 <h3>{page} of {numOfPages == 0 ? '1' : numOfPages}</h3>
                 <span onClick={()=>{changePage(true)}}><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed"><path d="m321-80-71-71 329-329-329-329 71-71 400 400L321-80Z"/></svg></span>
             </div>
-            <FilmList page={page} limit={limit} searchQuery={searchQuery} searchGenres={searchGenres} setNumOfPages={setNumOfPages} basket={basket} setBasket={setBasket}></FilmList>
+                <div className="container-wrapper">
+                <FilmList page={page} setLimit={setLimit} limit={limit} searchQuery={searchQuery} searchGenres={searchGenres} setNumOfPages={setNumOfPages} basket={basket} setBasket={setBasket}></FilmList>
+                </div>
         </div>
     )
 }

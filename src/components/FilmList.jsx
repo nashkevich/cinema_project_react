@@ -1,14 +1,29 @@
 import { useEffect, useState } from "react"
 import api from "../api"
 import MovieCard from "./MovieCard"
-function FilmList({page,limit,searchQuery,searchGenres,setNumOfPages,basket,setBasket}){
+function FilmList({page,setLimit,limit,searchQuery,searchGenres,setNumOfPages,basket,setBasket}){
     const [filmList,setFilmList] = useState([])
     const [filterList,setFilterList] = useState([])
     const getMoviePage =async()=>{
         const result = await api.get(`movie?page=${page}&limit=${limit}`)
         setFilmList(result.data.response)
     }
-    
+    // useEffect(()=>{
+    //     window.addEventListener('resize',()=>{
+    //             setLimit((prev)=>{
+    //                 let newValue = prev
+    //                 for(let i=0;i<limit;i++){
+    //                     if(document.body.offsetHeight > window.innerHeight){
+    //                         console.log(newValue)
+    //                         return --newValue
+    //                     }else{
+    //                         return ++newValue
+    //                     }
+    //                 }
+    //             })
+
+    //     })
+    // },[])
     function cutFilterList(filterList){
         const from = ((page-1)* limit)
         const to = page * limit
@@ -28,6 +43,9 @@ function FilmList({page,limit,searchQuery,searchGenres,setNumOfPages,basket,setB
         }
        }
     useEffect(()=>{
+        getMoviePage()
+    },[limit])
+    useEffect(()=>{
         if(filterList.length != 0){
             const newFilms  = cutFilterList(filterList)
             setFilmList(newFilms)
@@ -45,7 +63,7 @@ function FilmList({page,limit,searchQuery,searchGenres,setNumOfPages,basket,setB
     return(
         <div className="film-list-wrapper">
             {filmList.map((film,index)=>{
-                return <div className="wrapper"><MovieCard key={index}  movieData={film} basket={basket} setBasket={setBasket}/></div>
+                return <div className="wrapper-card"><MovieCard key={index}  movieData={film} basket={basket} setBasket={setBasket}/></div>
             })}
         </div>
     )
