@@ -9,6 +9,11 @@ body{
     margin: 0;
     padding: 10px;
     overflow: hidden;
+    box-sizing: border-box;
+    height: 100vh;
+}
+#root,.main-container{
+    height: 100%;
 }
 .logo{
     background: transparent;
@@ -206,9 +211,11 @@ body{
 }
 
 .container-wrapper{
-    height: 78vh;
     overflow-y: scroll;
+    scrollbar-width: thin;
+    scrollbar-color: var(--main-bg-color) var(--input-bg-color);
     display: flex;
+    height: calc(100% - 194px);
     span{
         top: 40%;
         position: sticky;
@@ -216,6 +223,7 @@ body{
         height: 25px;
     }
 }
+
 .pagination{
     color: white;
     display: flex;
