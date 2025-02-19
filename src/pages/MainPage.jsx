@@ -38,14 +38,11 @@ function MainPage(){
     return(
         <div className="main-container">
             <NavBarFilms setLimit={setLimit} setSearchQuery={setSearchQuery} setSearchGenres={setSearchGenres}></NavBarFilms>
-            {/* <div className="pagination">
+            <div className="container-wrapper">
                 <span onClick={()=>{changePage(false)}}><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"  fill="#e8eaed"><path d="M400-80 0-480l400-400 71 71-329 329 329 329-71 71Z"/></svg></span>
-                <h3>{page} of {numOfPages == 0 ? '1' : numOfPages}</h3>
-                <span onClick={()=>{changePage(true)}}><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed"><path d="m321-80-71-71 329-329-329-329 71-71 400 400L321-80Z"/></svg></span>
-            </div> */}
-                <div className="container-wrapper">
                 <FilmList page={page} setLimit={setLimit} limit={limit} searchQuery={searchQuery} searchGenres={searchGenres} setNumOfPages={setNumOfPages} basket={basket} setBasket={setBasket}></FilmList>
-                </div>
+                <span onClick={()=>{changePage(true)}}><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed"><path d="m321-80-71-71 329-329-329-329 71-71 400 400L321-80Z"/></svg></span>
+            </div>
         </div>
     )
 }
