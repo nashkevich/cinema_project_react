@@ -14,31 +14,6 @@ function MainPage(){
         const num = Math.round(result.data.response / limit)
         setNumOfPages(num)
     }
-    function getItemsNumLastRow(){
-        const grid = document.querySelector('.film-list-wrapper')
-        const children = Array.from(grid.children)
-        const computedStyle = window.getComputedStyle(grid)
-
-        const columns = computedStyle.getPropertyValue('grid-template-columns').split(' ').length
-        const lastRowIndex = Math.floor(children.length/columns) * columns
-        const lastRowItems = children.slice(lastRowIndex);
-        return lastRowItems.length
-    }
-    useEffect(()=>{
-        setTimeout(()=>{
-            if(document.body.scrollHeight > window.innerHeight){
-                console.log("Scroll")
-                const deleteNum = getItemsNumLastRow()
-                console.log(deleteNum)
-            setLimit((prev)=>{
-                return prev - deleteNum
-            })
-            }else{
-                console.log("No scroll")
-            }
-        },200)
-        
-    },[limit])
     function changePage(isNext){
         setPage((prevPage)=>{
             if(isNext && page != numOfPages){
