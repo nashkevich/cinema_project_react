@@ -49,6 +49,18 @@ body{
         margin: 0;
     }
 }
+.limit-container > select{
+    width: 100px;
+    height: 40px;
+    border:1px solid var(--input-bg-color);
+    border-radius: 10px;
+    background-color: var(--input-bg-color);
+    color: white;
+    padding: 5px;
+    option:hover{
+        background-color: #E00040;
+    }
+}
 .search-section{
     position: relative;
     box-sizing: border-box;
@@ -83,7 +95,11 @@ body{
     display: grid;
     justify-content: center;
 }
-
+.limit-container{
+    display: flex;
+    justify-content: end;
+    margin-bottom: 10px;
+}
 .movie-card{
     width: 200px;
     height: 300px;

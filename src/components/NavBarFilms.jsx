@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { useNavigate } from "react-router"
 import UserBar from "./UserBar"
-function NavBarFilms({setSearchQuery,setSearchGenres}){
+function NavBarFilms({setLimit,setSearchQuery,setSearchGenres}){
     const navigate = useNavigate()
     const [isLogin,setIsLogin] = useState(true)
     const [isOpen,setIsOpen] = useState(false)
@@ -35,6 +35,7 @@ function NavBarFilms({setSearchQuery,setSearchGenres}){
             </div>
             <div className="search-section">
                 <select onChange={(e)=>{setSearchGenres(e.target.value)}} name="genre" id="genre">
+                        <option hidden value="">Categories</option>
                         <option value="">All</option>
                         <option value="Horror">Horror</option>
                         <option value="Drama">Drama</option>
@@ -44,6 +45,16 @@ function NavBarFilms({setSearchQuery,setSearchGenres}){
                         <option value="Fantasy">Fantasy</option>
                     </select>
                 <input placeholder="Search for a movie" type="text" name='filmName' onChange={(e)=>setSearchQuery(e.target.value)}/>
+            </div>
+            <div className="limit-container">
+                    <select onChange={(e)=>{setLimit(e.target.value)}} name="genre" id="genre">
+                        <option disabled selected hidden value="10">Limit</option>
+                        <option value="10">10</option>
+                        <option value="20">20</option>
+                        <option value="30">30</option>
+                        <option value="40">40</option>
+                        <option value="50">50</option>
+                    </select>
             </div>
         </div>
     )

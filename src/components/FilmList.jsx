@@ -6,8 +6,6 @@ function FilmList({page,setLimit,limit,searchQuery,searchGenres,setNumOfPages,ba
     const [filterList,setFilterList] = useState([])
     const getMoviePage =async()=>{
         const result = await api.get(`movie?page=${page}&limit=${limit}`)
-        console.log("GETMOVEIPAGE")
-        console.log(result)
         setFilmList(result.data.response)
     }
     const createPagination = async ()=>{
@@ -43,15 +41,11 @@ function FilmList({page,setLimit,limit,searchQuery,searchGenres,setNumOfPages,ba
         if(result){
             setFilterList(result.data.response)
             const newNumberOfPages = Math.round(result.data.response.length/limit)
-            console.log(result)
             setNumOfPages(newNumberOfPages)
             const newFilms  = cutFilterList(result.data.response)
             setFilmList(newFilms)
         }
        }
-    useEffect(()=>{
-        getMoviePage()
-    },[limit])
     useEffect(()=>{
         if(filterList.length != 0){
             const newFilms  = cutFilterList(filterList)
@@ -59,7 +53,7 @@ function FilmList({page,setLimit,limit,searchQuery,searchGenres,setNumOfPages,ba
         }else{
             getMoviePage()
         }
-    },[page])
+    },[limit,page])
     useEffect(()=>{
         if(searchQuery != '' || searchGenres != ''){
             getFilterFilms()
@@ -69,6 +63,20 @@ function FilmList({page,setLimit,limit,searchQuery,searchGenres,setNumOfPages,ba
             createPagination()
         }
     },[searchQuery,searchGenres])
+    useEffect(()=>{
+        setTimeout(()=>{
+            const grid = document.querySelector('.film-list-wrapper')
+            const gridDivs = document.querySelectorAll('.film-list-wrapper > div')
+            const numOfElementsInRow = Math.round(grid.offsetWidth/gridDivs[0].offsetWidth)
+            setLimit((prev)=>{
+                if(prev % numOfElementsInRow != 0){
+                    return prev - prev % numOfElementsInRow
+                }
+                return prev
+
+            })
+        },100)
+    },[])
     return(
         <div className="film-list-wrapper">
             {filmList.map((film,index)=>{
