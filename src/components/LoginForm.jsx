@@ -37,13 +37,31 @@ const handleOnChange = (e)=>{
     })
 }
     return (
-        <form onSubmit={SubmitForm}>
-            <label htmlFor="username">Name</label>
-            <input type="text" name="username" value={formData['username']} placeholder="username" onChange={handleOnChange}/>
-            <label htmlFor="password">Password</label>
-            <input type="password" name="password" value={formData['password']} placeholder="password" onChange={handleOnChange}/>
-            <button type="submit">Login</button>
+        <div className="auth-container">
+
+            <div className="form-container">
+            <form className="form-sign-up" onSubmit={SubmitForm}>
+                <h2>Sign In</h2>
+            <div className="form-input-box">
+                <label htmlFor="username">Name</label>
+                <input type="text" name="username" value={formData['username']} placeholder="John" onChange={handleOnChange}/>
+            </div>
+            <div className="form-input-box">
+                <label htmlFor="password">Password</label>
+                <input type="password" name="password" value={formData['password']} placeholder="gdfghtrrtfd" onChange={handleOnChange}/>
+            </div>
+            <div className="form-input-box">
+                <a href="/auth/registration">Sign Up</a>
+            </div>
+            <button className="main-btn" type="submit">Login</button>
         </form>
+            </div>
+            {/* <div className="auth-img">
+                <img src="/logo.png" alt="" width='200px' height='200px' />
+                <h2 className="logo">Block Buster</h2>
+            </div> */}
+            
+        </div>
     )
 }   
 

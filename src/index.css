@@ -16,8 +16,11 @@ body{
     height: 100%;
 }
 .logo{
+    cursor: pointer;
     background: transparent;
     color: transparent;
+    margin: 0;
+    text-transform: uppercase;
     -webkit-background-clip: text;
     background-image: linear-gradient(90deg, rgba(131,58,180,1) 0%, rgba(253,29,29,1) 50%, rgba(252,176,69,1) 100%);
 }
@@ -109,6 +112,7 @@ body{
     margin-bottom: 10px;
 }
 .movie-card{
+    cursor: pointer;
     width: 200px;
     height: 300px;
     display: flex;
@@ -166,6 +170,7 @@ body{
     }
 }
 .user-btn{
+    cursor: pointer;
     background-color: var(--main-btn-color);
     color: white;
     border:1px solid var(--main-btn-color);
@@ -209,7 +214,109 @@ body{
     grid-template-columns: repeat(auto-fill,minmax(200px,1fr));
     gap: 10px;
 }
+.movie-page{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: calc(100% - 84px);
+}
+.movie-container{
+    display: flex;
+    color: white;
+    justify-content: center;
+    gap: 50px;
+}
+.img-movie-container{
+    max-width: 200px;
+    flex-direction: column;
+    display: flex;
+    align-items: center;
+}
+.auth-container{
+    display: flex;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+}
+.auth-img{
+    background-image: url(/public/cool-background.svg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    border-radius: 0 10px 10px 0;
+}
+.auth-img,.form-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    flex:1;
+}
+.user-bar-section{
+    cursor: pointer;
+}
+.form-input-box{
+    width: 100%;
+    justify-content: start;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    color: white;
+    input{
+        width: 200px;
+        height: 20px;
+        border-radius: 10px;
+        padding: 10px;
+    }
+    a{
+        width: fit-content;
+        color:white;
+    }
+}
+.form-sign-up {
+    color: white;
+    background-color: rgba(34, 58, 81, 0.5);
+    backdrop-filter: blur(10px);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 20px;
+    padding: 30px;
+    text-align: left;
+    h2{
+        margin: 0;
+    }
+}
 
+.movie-name{
+    display: flex;
+    gap: 10px;
+    align-items:center;
+    h2{
+        margin: 0;
+        font-size: 32px;
+        line-height: normal;
+    }
+    h3{
+        margin: 0;
+        font-size: 24px;
+    }
+}
+
+.movie-info{
+    width: 100%;
+    max-width: 300px;
+    display: flex;
+    flex-direction: column;
+}
 .container-wrapper{
     overflow-y: scroll;
     scrollbar-width: thin;
