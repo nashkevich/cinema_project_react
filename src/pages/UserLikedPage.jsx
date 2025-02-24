@@ -16,9 +16,12 @@ function UserLikedPage(){
         getLikedMovies()
     },[])
     return (
+        <>
+        {filmList.length == 0 && <div className="no-movies-box">No Liked Movies</div>}
         <div className="film-list-wrapper">{filmList.map((film)=>{
            return <MovieCard key={film.id} movieData={film} basket={basketSettings.basket} setBasket={basketSettings.setBasket}></MovieCard>
         })}</div>
+        </>
     )
 }
 

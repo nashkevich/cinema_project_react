@@ -206,7 +206,19 @@ body{
     from {opacity: 0;}
     to {opacity: 1;}
 }
-
+.back-box{
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+.no-movies-box{
+    margin-top: 50px;
+    text-align: center;
+    color: white;
+    font-size: 32px;
+}
 .card-img{
     background-image: var(--image-url);
     background-position: center;
