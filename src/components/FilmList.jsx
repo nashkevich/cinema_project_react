@@ -80,7 +80,7 @@ function FilmList({page,setLimit,limit,searchQuery,searchGenres,setNumOfPages,ba
     return(
         <div className="film-list-wrapper">
             {filmList.map((film,index)=>{
-                return <div className="wrapper-card"><MovieCard key={index}  movieData={film} basket={basket} setBasket={setBasket}/></div>
+                return <div key={film.id} className="wrapper-card"><MovieCard key={index}  movieData={film} basket={basket} setBasket={setBasket}/></div>
             })}
         </div>
     )
