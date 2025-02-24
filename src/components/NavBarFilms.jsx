@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState,useRef } from "react"
 import { useLocation, useNavigate } from "react-router"
 import { useCinemaContext } from "./CinemaLayout";
 import UserBar from "./UserBar"
@@ -6,6 +6,7 @@ function NavBarFilms(){
     const locationStart = useLocation()
     const navigate = useNavigate()
     const { searchSettings } = useCinemaContext();
+    const menuRef = useRef(null)
     const [location,setLocation] = useState(locationStart.pathname)
     const [isLogin,setIsLogin] = useState(true)
     const [isOpen,setIsOpen] = useState(false)
@@ -17,6 +18,12 @@ function NavBarFilms(){
             })
         }
     }
+    const handleClickOutSideMenu =  (event)=>{
+        if(menuRef.current && !menuRef.current.contains(event.target)){
+            setIsOpen(false)
+        }
+    }
+    document.addEventListener('click',handleClickOutSideMenu)
     useEffect(()=>{
         setLocation(locationStart.pathname)
         console.log(locationStart.pathname)
@@ -35,7 +42,7 @@ function NavBarFilms(){
                 <div className="content-nav">
                     <button className="nav-btn">About</button>
                     <button className="nav-btn">Help</button>
-                    {isLogin ? (<div className="user-info-container"><button onClick={()=>{setIsOpen((prev)=>{return !prev})}} className="user-btn">User</button>{isOpen && <UserBar></UserBar>}</div>): (<div>
+                    {isLogin ? (<div ref={menuRef} className="user-info-container"><button onClick={()=>{setIsOpen((prev)=>{return !prev})}} className="user-btn">User</button>{isOpen && <UserBar></UserBar>}</div>): (<div>
                         <button onClick={()=>{navigate('/auth/login')}} className="nav-btn">Log In</button>
                         <button onClick={()=>{navigate('/auth/registration')}} className="main-btn">Sign Up</button>
                     </div>)}
