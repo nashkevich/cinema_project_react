@@ -11,9 +11,12 @@ export const useCinemaContext = () =>{
 function CinemaLayout({children}){
     const [searchQuery, setSearchQuery] = useState("");
     const [searchGenres, setSearchGenres] = useState("");
+    const [basket,setBasket] = useState([])
     const [limit, setLimit] = useState(25);
+    const searchSettings = { searchQuery, setSearchQuery, searchGenres, setSearchGenres, limit, setLimit };
+    const basketSettings = { basket, setBasket}
     return(
-        <CinemaContext.Provider value={{searchQuery,setSearchQuery,searchGenres,setSearchGenres,limit,setLimit}}>
+        <CinemaContext.Provider value={{searchSettings,basketSettings}}>
             {children}
         </CinemaContext.Provider>
     )

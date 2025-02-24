@@ -5,7 +5,7 @@ import UserBar from "./UserBar"
 function NavBarFilms(){
     const locationStart = useLocation()
     const navigate = useNavigate()
-    const { searchQuery, setSearchQuery, searchGenres, setSearchGenres, limit, setLimit } = useCinemaContext();
+    const { searchSettings } = useCinemaContext();
     const [location,setLocation] = useState(locationStart.pathname)
     const [isLogin,setIsLogin] = useState(true)
     const [isOpen,setIsOpen] = useState(false)
@@ -42,7 +42,7 @@ function NavBarFilms(){
                 </div>
             </div>
             {location === "/cinema/main" && (<><div className="search-section">
-                <select onChange={(e)=>{setSearchGenres(e.target.value)}} name="genre" id="genre">
+                <select onChange={(e)=>{searchSettings.setSearchGenres(e.target.value)}} name="genre" id="genre">
                         <option hidden value="">Categories</option>
                         <option value="">All</option>
                         <option value="Horror">Horror</option>
@@ -52,10 +52,10 @@ function NavBarFilms(){
                         <option value="Comedy">Comedy</option>
                         <option value="Fantasy">Fantasy</option>
                     </select>
-                <input placeholder="Search for a movie" type="text" name='filmName' onChange={(e)=>setSearchQuery(e.target.value)}/>
+                <input placeholder="Search for a movie" type="text" name='filmName' onChange={(e)=>searchSettings.setSearchQuery(e.target.value)}/>
             </div>
             <div className="limit-container">
-                    <select onChange={(e)=>{setLimit(e.target.value)}} name="genre" id="genre">
+                    <select onChange={(e)=>{searchSettings.setLimit(e.target.value)}} name="genre" id="genre">
                         <option disabled selected hidden value="10">Limit</option>
                         <option value="10">10</option>
                         <option value="20">20</option>

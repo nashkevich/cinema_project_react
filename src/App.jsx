@@ -19,8 +19,8 @@ function App() {
         <Route path='registration' element={<RegistrationForm/>} />
       </Route>
       <Route path='cinema' element={<PrivateRoute />}>
+      <Route path='movie/:movieId' element={<MoviePage></MoviePage>}/>
         <Route path='main' element={<MainPage>  </MainPage>} />
-        <Route path='movie/:movieId' element={<MoviePage/>}/>
         <Route path="liked" element={<UserPage/>}/>
       </Route>
     </Routes>

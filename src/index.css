@@ -111,6 +111,7 @@ body{
     justify-content: end;
     margin-bottom: 10px;
 }
+
 .movie-card{
     cursor: pointer;
     width: 200px;
@@ -194,10 +195,16 @@ body{
     opacity: 1;
 } */
 .wrapper-card{
+    animation-name:cardOpacity;
+    animation-duration: 1s;
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
+}
+@keyframes cardOpacity{
+    from {opacity: 0;}
+    to {opacity: 1;}
 }
 
 .card-img{
