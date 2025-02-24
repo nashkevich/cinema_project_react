@@ -13,22 +13,7 @@ function FilmList({page,setLimit,limit,searchQuery,searchGenres,setNumOfPages,ba
         const num = Math.round(result.data.response / limit)
         setNumOfPages(num)
     }
-    // useEffect(()=>{
-    //     window.addEventListener('resize',()=>{
-    //             setLimit((prev)=>{
-    //                 let newValue = prev
-    //                 for(let i=0;i<limit;i++){
-    //                     if(document.body.offsetHeight > window.innerHeight){
-    //                         console.log(newValue)
-    //                         return --newValue
-    //                     }else{
-    //                         return ++newValue
-    //                     }
-    //                 }
-    //             })
 
-    //     })
-    // },[])
     function cutFilterList(filterList){
         const from = ((page-1)* limit)
         const to = page * limit

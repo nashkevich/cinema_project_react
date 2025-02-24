@@ -7,7 +7,7 @@ import RegistrationForm from './components/RegistrationForm'
 import MainPage from './pages/MainPage'
 import MoviePage from './pages/MoviePage'
 import PrivateRoute from './components/PrivateRoute'
-import UserPage from './pages/UserPage'
+import UserLikedPage from './pages/UserLikedPage'
 import {Route,Routes} from 'react-router'
 function App() {
   const [count, setCount] = useState(0)
@@ -21,7 +21,7 @@ function App() {
       <Route path='cinema' element={<PrivateRoute />}>
       <Route path='movie/:movieId' element={<MoviePage></MoviePage>}/>
         <Route path='main' element={<MainPage>  </MainPage>} />
-        <Route path="liked" element={<UserPage/>}/>
+        <Route path="liked" element={<UserLikedPage/>}/>
       </Route>
     </Routes>
      
