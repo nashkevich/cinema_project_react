@@ -10,3 +10,5 @@ Login/Registration Pages:
 <img src='/public/demo/login_page.png'>
 Registration Page:
 <img src='/public/demo/registration_page.png'>
+Main Page:
+<img src='/public/demo/main_page.png'>
