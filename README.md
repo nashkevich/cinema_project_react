@@ -1,8 +1,12 @@
-# React + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# Project Title
 
-Currently, two official plugins are available:
+This project is designed for cinema enthusiasts looking for an easy way to find new films. The project is split into two repositories, with this one dedicated to the frontend.
+## 🛠 Skills
+React, React Router, responsive design
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Demo
+Login/Registration Pages:
+<img src='/public/demo/login_page.png'>
+Registration Page:
+<img src='/public/demo/registration_page.png'>
